@@ -76,7 +76,5 @@ def PID_RT(SP, PV, Man, MVMan, MVFF, Kc, Ti, Td, alpha, Ts, MVMin, MVMax, MV, MV
         MVI[-1] = MVMin - MVP[-1] - MVFF[-1]
    
     MV.append(MVP[-1] + MVI[-1] + MVD[-1] + MVFF[-1])
-    if MV[-1]>MVMax:
-        print(MV[-1])
     
-    return (MV, MVP, MVI, MVD)
+    return (MV, MVP, MVI, MVD, E)
