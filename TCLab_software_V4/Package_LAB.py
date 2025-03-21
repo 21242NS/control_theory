@@ -195,3 +195,14 @@ def Margin(Ps,C,omega,Show=True):
     #plt.savefig(nameFile + '.png',transparent=True)
     #plt.savefig(nameFile + '.pdf',transparent=True)  
 
+class Controleur:
+    
+    def __init__(self, parameters):
+        
+        self.parameters = parameters
+        self.parameters['Kc'] = parameters['Kc'] if 'Kc' in parameters else 1.0
+        self.parameters['Ti'] = parameters['Ti'] if 'Ti' in parameters else 0.0
+        self.parameters['Td'] = parameters['Td'] if 'Td' in parameters else 0.0
+        self.parameters['Tfd'] = parameters['Tfd'] if 'Tfd' in parameters else 0.0
+        self.parameters['Tlag2'] = parameters['Tlag2'] if 'Tlag2' in parameters else 0.0
+        self.parameters['nInt'] = parameters['nInt'] if 'nInt' in parameters else 0        
