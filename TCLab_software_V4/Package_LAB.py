@@ -71,10 +71,10 @@ def PID_RT(SP, PV, Man, MVMan, MVFF, Kc, Ti, Td, alpha, Ts, MVMin, MVMax, MV, MV
         else:
             MVI[-1] = MVMan[-1] - MVP[-1] - MVD[-1] - MVFF[-1]
     #saturation
-    if (MVP[-1] + MVI[-1]+MVFF[-1])>MVMax:
-        MVI[-1] = MVMax - MVP[-1]-MVFF[-1]
-    if (MVP[-1] + MVI[-1]+MVFF[-1])<MVMin:
-        MVI[-1] = MVMin - MVP[-1] - MVFF[-1]
+    if (MVP[-1] + MVI[-1]+MVFF[-1]+MVD[-1])>MVMax:
+        MVI[-1] = MVMax - MVP[-1]-MVD[-1] - MVFF[-1]
+    if (MVP[-1] + MVI[-1]+MVFF[-1]+MVD[-1])<MVMin:
+        MVI[-1] = MVMin - MVP[-1] - MVFF[-1] - MVD[-1]
    
     MV.append(MVP[-1] + MVI[-1] + MVD[-1] + MVFF[-1])
     
@@ -104,7 +104,7 @@ def IMC_tuning(K, Tlag1, Tlag2=0, theta=0, gamma = 0.5, process="FOPDT-PI"):
         Ti = Tlag1 + theta/2
         Td = (Tlag1*theta)/(2*Tlag1+theta)
     elif process=="SOPDT": 
-        Kc = ((Tlag1 + Tlag2)/(Tclp + theta))/K
+        Kc = (((Tlag1 + Tlag2)/(Tclp + theta))/K)
         Ti = (Tlag1 +Tlag2)
         Td = ((Tlag1*Tlag2))/(Tlag1+Tlag2)
     else:
